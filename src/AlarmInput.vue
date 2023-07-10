@@ -1,43 +1,55 @@
 <template>
-    <section class="fixed inset-0 flex items-center justify-center">
+    <section class="fixed inset-0 flex items-center justify-center ">
 
         <div class="
         font-bold 
-        p-24
-        h-96 w-auto
+        p-28
         bg-stone-300
         border-slate-800 
         flex-col
-        space-y-9
+        space-y-8
+        h-auto w-auto
         ">
             <h2 class="text-3xl">Set up your Alarm!</h2>
 
             <h3> CDT Time Now: {{ timeNow }} </h3>
 
-            <input type="time" :tituloBarra="tituloBarra" class="text-3xl mb-4 ">
+            <input type="time" v-model="alarmTime" class="text-3xl mb-4 ">
 
-            <div class="p2 flex-row space-x-6">
+            
+            <div class=" flex-row space-x-6">
+                
+                <button class="p-2 w-auto h-auto bg-slate-500 text-2xl rounded-2xl" @click="setAlarm">
+                    Set Alarm
+                </button>
 
-                <button class="text-2xl" @click="setAlarm">Set</button>
-
-                <button class="text-2xl" @click="close">Close</button>
+                <button class="p-2 w-auto h-auto bg-slate-500 text-2xl rounded-2x1" @click="close">
+                    Close Alarm
+                </button>
 
             </div>
 
-
-
         </div>
+        
 
     </section>
 </template>
 
 <script>
 import { ref, onMounted } from 'vue';
-import { format, addSeconds } from 'date-fns';
+import { format, isBefore, addDays, addSeconds } from 'date-fns';
 
 export default {
 
+    data() {
+
+        return {
+            alarmTime: '',
+        }
+    },
+
     setup() {
+        
         const timeNow = ref(format(new Date(), 'HH:mm:ss'));
 
         onMounted(() => {
@@ -65,10 +77,38 @@ export default {
         close() {
             this.$emit('close');
         },
-    },
+
+        setAlarm() {
+            
+            const timeNow = new Date();
+
+            const selectedTime = this.alarmTime;
+
+            const [selectedHour, selectedMinutes] = selectedTime.split(':');
+
+            const alarmDate = new Date();
+
+            alarmDate.setHours(selectedHour);
+            alarmDate.setMinutes(selectedMinutes);
+            alarmDate.setSeconds(0);
+
+            const timeUntilAlarm = alarmDate - timeNow;
+
+            setTimeout(() => {
+                alert('Alarm!');
+            }, timeUntilAlarm);
+            
+            console.log(selectedTime);
+            
+            console.log(timeNow);
+
+            console.log(timeUntilAlarm);
+            
+
+        },
 
 
+    }
 }
-
 </script>
 
