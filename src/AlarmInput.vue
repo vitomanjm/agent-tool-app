@@ -47,10 +47,14 @@ export default {
         return {
             alarmTime: '',
             selectedAlarm: '',
+            alarmSong: new Audio("https://nzt6ku-a.akamaihd.net/downloads/ringtones/files/mp3/new-pika-pika-pikachu-ringtone-53981-54477.mp3"),
+
         }
     },
 
     setup() {
+
+
 
         const timeNow = ref(format(new Date(), 'HH:mm:ss'));
 
@@ -75,6 +79,7 @@ export default {
     methods: {
         close() {
             this.$emit('close');
+            this.alarmSong.pause();
         },
 
         setAlarm() {
@@ -95,10 +100,11 @@ export default {
 
             const timeUntilAlarm = alarmDate - timeNow;
 
-            
+
 
             setTimeout(() => {
-                this.alarmSound()}, 
+                this.alarmSound()
+            },
                 timeUntilAlarm);
 
 
@@ -111,7 +117,7 @@ export default {
 
             console.log(timeUntilAlarm);
 
-            
+
 
 
         },
@@ -123,9 +129,8 @@ export default {
 
 
         alarmSound() {
-            const alarmSong = new Audio("https://nzt6ku-a.akamaihd.net/downloads/ringtones/files/mp3/new-pika-pika-pikachu-ringtone-53981-54477.mp3");
-            alarmSong.play();
-            alarmSong.loop = true;
+            this.alarmSong.play();
+            this.alarmSong.loop = true;
         },
     }
 }
