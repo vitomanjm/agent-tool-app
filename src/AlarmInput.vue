@@ -16,9 +16,10 @@
 
             <input type="time" v-model="alarmTime" class="text-3xl mb-4 ">
 
-            
+            <h4 v-bind="selectedAlarm" v-if="selectedAlarm">You alarm is been set at: {{ formatAlarm(selectedAlarm) }}</h4>
+
             <div class=" flex-row space-x-6">
-                
+
                 <button class="p-2 w-auto h-auto bg-slate-500 text-2xl rounded-2xl" @click="setAlarm">
                     Set Alarm
                 </button>
@@ -30,7 +31,7 @@
             </div>
 
         </div>
-        
+
 
     </section>
 </template>
@@ -45,11 +46,12 @@ export default {
 
         return {
             alarmTime: '',
+            selectedAlarm: '',
         }
     },
 
     setup() {
-        
+
         const timeNow = ref(format(new Date(), 'HH:mm:ss'));
 
         onMounted(() => {
@@ -62,10 +64,7 @@ export default {
     },
 
     props: {
-        tituloBarra: {
-            type: String,
-            required: true
-        },
+
         isOpen: {
             type: Boolean,
             required: true
@@ -79,7 +78,7 @@ export default {
         },
 
         setAlarm() {
-            
+
             const timeNow = new Date();
 
             const selectedTime = this.alarmTime;
@@ -92,22 +91,42 @@ export default {
             alarmDate.setMinutes(selectedMinutes);
             alarmDate.setSeconds(0);
 
+            this.selectedAlarm = alarmDate;
+
             const timeUntilAlarm = alarmDate - timeNow;
 
+            
+
             setTimeout(() => {
-                alert('Alarm!');
-            }, timeUntilAlarm);
-            
-            console.log(selectedTime);
-            
+                this.alarmSound()}, 
+                timeUntilAlarm);
+
+
+
+            console.log(alarmDate);
+
+            console.log(this.selectedAlarm);
+
             console.log(timeNow);
 
             console.log(timeUntilAlarm);
+
             
+
+
+        },
+
+        formatAlarm(date) {
+            return format(date, 'HH:mm:ss');
 
         },
 
 
+        alarmSound() {
+            const alarmSong = new Audio("https://nzt6ku-a.akamaihd.net/downloads/ringtones/files/mp3/new-pika-pika-pikachu-ringtone-53981-54477.mp3");
+            alarmSong.play();
+            alarmSong.loop = true;
+        },
     }
 }
 </script>

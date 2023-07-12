@@ -1,7 +1,13 @@
 <script>
 import { ref } from 'vue'
+import ToDoListInput from './ToDoListInput.vue'
 
 export default {
+
+    components: {
+        ToDoListInput,
+    },
+
     data() {
         return {
 
@@ -11,20 +17,15 @@ export default {
     },
 
     methods: {
-        alerta() {
-            alert(this.tituloBarra)
-            console.log(this.tituloBarra)
-        }
-    },
-    watch: {
+
         Open() {
             this.isOpen = !this.isOpen;
+        },
+
+        close() {
+            this.isOpen = false
         }
-    },
-
-}
-
-components: {
+    }
 
 }
 
@@ -33,6 +34,13 @@ components: {
 
 <template>
     <div>
-        <button @click="alerta">To-Do List</button>
+        <button @click="Open">To-Do List</button>
     </div>
+
+    <div v-if="isOpen"> 
+    
+        <ToDoListInput :isOpen="isOpen" @close="close"></ToDoListInput> 
+    
+    </div>
+
 </template>

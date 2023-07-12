@@ -14,19 +14,11 @@ export default {
 
         return {
 
-            tituloBarra: 'ALARMA!',
             isOpen: false,
         }
     },
 
     methods: {
-
-        alerta() {
-
-            alert(this.tituloBarra),
-                console.log(this.tituloBarra)
-
-        },
 
         Open() {
             this.isOpen = true
@@ -38,9 +30,6 @@ export default {
 
     },
 
-    watch: {
-
-    },
 
 }
 
@@ -60,7 +49,7 @@ export default {
 
     <div v-if="isOpen">
 
-        <AlarmInput :tituloBarra="tituloBarra" :isOpen="isOpen" @close="close">
+        <AlarmInput :isOpen="isOpen" @close="close">
         </AlarmInput>
 
     </div>
