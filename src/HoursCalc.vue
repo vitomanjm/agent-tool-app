@@ -1,32 +1,32 @@
 <script>
 import { ref } from 'vue'
+import HoursCalcInput from './HoursCalcInput.vue'
 
 export default {
+
+    components: {
+        HoursCalcInput,
+    },
+
     data() {
         return {
 
-            tituloBarra: ref('Calculating...!!'),
             isOpen: false
         }
     },
 
     methods: {
-        alerta() {
-            alert(this.tituloBarra)
-            console.log(this.tituloBarra)
-        }
-    },
 
-    watch: {
         Open() {
             this.isOpen = !this.isOpen;
+        },
+
+        close() {
+            this.isOpen = false
         }
+
     }
 
-
-}
-
-components: {
 
 }
 
@@ -34,6 +34,12 @@ components: {
 
 <template>
     <div>
-        <button @click="alerta">Hours Calculator</button>
+        <button @click="Open">Hours Calculator</button>
     </div>
+
+    <div v-if="isOpen">
+        <HoursCalcInput :isOpen="isOpen" @close="close"></HoursCalcInput>
+
+    </div>
+
 </template>

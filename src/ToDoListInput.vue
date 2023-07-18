@@ -1,7 +1,7 @@
 <template>
-        <section class=" m-8 absolute inset-0 flex items-center justify-center ">
+    <form class=" m-8 absolute inset-0 flex items-center justify-center" @submit.prevent="tasksItem"> 
 
-                <div class="
+        <div class="
             font-bold 
             p-28
             bg-stone-300
@@ -11,66 +11,75 @@
             h-auto w-auto
             ">
 
-                <h1 class="text-3xl">Add your tasks:</h1>
+            <h1 class="text-3xl">Add your tasks:</h1>
 
-                <input v-model="tasksItem" type="text" :placeholder="placeHolder"> 
-                
-                <button class="ml-2 p-2 w-auto h-auto bg-slate-400 rounded-s-3xl" @click="addItem(tasksItem)">Add Item</button>
-                <button class="ml-4 p-2 w-auto h-auto bg-slate-400 rounded-s-3xl" @click="deleteItem()" v-if="tasks" > Delete Item</button>
+            <input v-model="tasksItem" type="text" :placeholder="placeHolder">
 
-                <p v-for="task in tasks" :key="task" > {{ tasks.join('') }}</p>
+            <button class="ml-2 p-2 w-auto h-auto bg-slate-400 rounded-s-3xl" @click="addItem(tasksItem)">Add Item</button>
 
-                <button class="flex flex-col
-                mt-8
-                mb-0
-                p-2 
-                w-auto h-auto 
-                bg-slate-400 text-2xl 
-                rounded-s-3xl " @click="close"> Close </button>
+            <label class="ml-2 p-2 w-auto h-auto">
+                Create alarm
+                <input type="checkbox">
 
-                </div>
+            </label>
+
+            <p v-for="task in tasks" :key="task"> {{ tasks.join('') }}</p>
+
+        <div class="flex flex-row items-center justify-center">
+            <button class="m-4 p-2 w-auto h-auto bg-slate-400 rounded-s-3xl" @click="deleteItem()"
+                v-if="tasks">
+                Delete Item
+            </button>
+
+            <button class="m-4 p-2 w-auto h-auto bg-slate-400 rounded-s-3xl " @click="close">
+                Close
+            </button>
+
+        </div>
+
+        </div>
 
 
 
-        </section>
+    </form>
 </template>
 
 <script>
 
 export default {
 
-    data() 
-    
-    { return {
+    data() {
+        return {
 
-        tasksItem: '',
-        tasks: [],
-        placeHolder: "To Do",
-    }},
+            tasksItem: '',
+            tasks: [],
+            placeHolder: "To Do",
+        }
+    },
 
     props: {
 
-isOpen: {
-    type: Boolean,
-    required: true
-}
+        isOpen: {
+            type: Boolean,
+            required: true
+        }
 
 
-},
+    },
     methods: {
-        
+
         close() {
             this.$emit('close');
         },
 
         addItem(item) {
-    
+
             this.tasks.push(item)
             this.placeHolder = 'To Do';
 
             console.log(this.tasks);
 
-        }, 
+        },
 
         deleteItem() {
 
@@ -81,7 +90,6 @@ isOpen: {
     }
 
 }
-
 
 
 </script>

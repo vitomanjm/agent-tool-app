@@ -47,7 +47,7 @@ export default {
         return {
             alarmTime: '',
             selectedAlarm: '',
-            alarmSong: new Audio("https://nzt6ku-a.akamaihd.net/downloads/ringtones/files/mp3/new-pika-pika-pikachu-ringtone-53981-54477.mp3"),
+            alarmSong: new Audio("https://2u039f-a.akamaihd.net/downloads/ringtones/files/mp3/techno-dog-25297.mp3"),
 
         }
     },

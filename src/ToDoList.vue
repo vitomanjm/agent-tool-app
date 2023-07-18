@@ -11,7 +11,6 @@ export default {
     data() {
         return {
 
-            tituloBarra: ref('To Do List!'),
             isOpen: false
         }
     },

@@ -7,6 +7,7 @@ import AlarmInput from './AlarmInput.vue'
 import ToDoList from './ToDoList.vue'
 import ToDoListInput from './ToDoListInput.vue'
 import HoursCalc from './HoursCalc.vue'
+import HoursCalcInput from './HoursCalcInput.vue'
 
 createApp(App).mount('#app');
 
@@ -17,3 +18,4 @@ createApp(Alarm).mount('#alarm');
 createApp(AlarmInput).mount('#alarmInput');
 
 createApp(HoursCalc).mount('#hoursCalc');
+createApp(HoursCalcInput).mount('#hoursCalcInput');
