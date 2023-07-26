@@ -7,6 +7,9 @@ content:
 './pages/**/*.{html,js}',
 './components/**/*.{html,js}',],
 theme: {
+  fontFamily: {
+    'sans': ['Helvetica', 'Arial', 'sans-serif'],
+    },
   extend: {},
 },
 plugins: [require("daisyui")],

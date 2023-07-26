@@ -38,7 +38,7 @@
 
 <script>
 import { ref, onMounted } from 'vue';
-import { format, isBefore, addDays, addSeconds } from 'date-fns';
+import { format, addSeconds } from 'date-fns';
 
 export default {
 

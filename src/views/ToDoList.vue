@@ -1,6 +1,6 @@
 <script>
 import { ref } from 'vue'
-import ToDoListInput from './ToDoListInput.vue'
+import ToDoListInput from '../components/ToDoListInput.vue'
 
 export default {
 

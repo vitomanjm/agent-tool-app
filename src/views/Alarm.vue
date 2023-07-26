@@ -1,6 +1,6 @@
 <script>
 import { ref } from 'vue'
-import AlarmInput from './AlarmInput.vue'
+import AlarmInput from '../components/AlarmInput.vue'
 
 export default {
 
@@ -9,8 +9,6 @@ export default {
     },
 
     data() {
-
-
 
         return {
 

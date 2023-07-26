@@ -1,6 +1,6 @@
 <script>
-import { ref } from 'vue'
-import HoursCalcInput from './HoursCalcInput.vue'
+
+import HoursCalcInput from '../components/HoursCalcInput.vue'
 
 export default {
 
