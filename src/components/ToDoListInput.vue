@@ -7,8 +7,7 @@
             bg-stone-300
             border-slate-800 
             flex-col
-            space-y-8
-            h-auto w-auto
+            space-y-6
             ">
 
             <h1 class="text-3xl">Add your tasks:</h1>
@@ -20,10 +19,10 @@
             <label class="ml-2 p-2 w-auto h-auto">
                 Create alarm
                 <input type="checkbox">
-
             </label>
+
             <p>Tasks in list:</p>
-            <p v-for="(task, index) in tasks" :key="index">  <br> {{ task.taskName }}</p>
+            <p v-for="(task, index) in tasks" :key="index"> {{ task.taskName }}</p>
 
             <div class="flex flex-row items-center justify-center">
                 <button class="m-4 p-2 w-auto h-auto bg-slate-400 rounded-s-3xl" @click="deleteItem()" v-if="tasks">
@@ -37,7 +36,6 @@
             </div>
 
         </div>
-
 
 
     </form>

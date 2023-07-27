@@ -81,15 +81,15 @@ export default {
                     <input class="p-2 m-2" type="time" v-model="endTime" />
                 </div>
                 <div>
-                    <button class="p-2 m-6  items-center justify-center bg-slate-100" @click="calculateHours">
+                    <button class="flex-col m-4 ml-8 p-2 w-auto h-auto bg-slate-400 rounded-s-3xl space-x-2" @click="calculateHours">
                         Calculate Hours
                     </button>
-                    <button class="p-2 m-6  items-center justify-center bg-slate-100" @click="close">
+                    <button class="flex-col m-4 ml-8 p-2 w-auto h-auto bg-slate-400 rounded-s-3xl space-x-2" @click="close">
                         Close
                     </button>
                 </div>
                 <div>
-                    <p class="p-2 m-2">Calculated: {{ hoursResult }}</p>
+                    <p class="p-4 ml-16"> Calculated: {{ hoursResult }} </p>
                 </div>
             </div>
         </div>

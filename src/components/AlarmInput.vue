@@ -20,11 +20,11 @@
 
             <div class=" flex-row space-x-6">
 
-                <button class="p-2 w-auto h-auto bg-slate-500 text-2xl rounded-2xl" @click="setAlarm">
+                <button class="ml-2 p-2 w-auto h-auto bg-slate-400 rounded-s-3xl" @click="setAlarm">
                     Set Alarm
                 </button>
 
-                <button class="p-2 w-auto h-auto bg-slate-500 text-2xl rounded-2x1" @click="close">
+                <button class="ml-2 p-2 w-auto h-auto bg-slate-400 rounded-s-3xl" @click="close">
                     Close Alarm
                 </button>
 
