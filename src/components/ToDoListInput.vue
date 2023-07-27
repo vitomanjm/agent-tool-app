@@ -1,5 +1,5 @@
 <template>
-    <form class=" m-8 absolute inset-0 flex items-center justify-center" @submit.prevent="tasksItem"> 
+    <form class=" m-8 absolute inset-0 flex items-center justify-center" @submit.prevent="tasksItem">
 
         <div class="
             font-bold 
@@ -22,20 +22,19 @@
                 <input type="checkbox">
 
             </label>
+            <p>Tasks in list:</p>
+            <p v-for="(task, index) in tasks" :key="index">  <br> {{ task.taskName }}</p>
 
-            <p v-for="task in tasks" :key="task"> {{ tasks.join('') }}</p>
+            <div class="flex flex-row items-center justify-center">
+                <button class="m-4 p-2 w-auto h-auto bg-slate-400 rounded-s-3xl" @click="deleteItem()" v-if="tasks">
+                    Delete Item
+                </button>
 
-        <div class="flex flex-row items-center justify-center">
-            <button class="m-4 p-2 w-auto h-auto bg-slate-400 rounded-s-3xl" @click="deleteItem()"
-                v-if="tasks">
-                Delete Item
-            </button>
+                <button class="m-4 p-2 w-auto h-auto bg-slate-400 rounded-s-3xl " @click="close">
+                    Close
+                </button>
 
-            <button class="m-4 p-2 w-auto h-auto bg-slate-400 rounded-s-3xl " @click="close">
-                Close
-            </button>
-
-        </div>
+            </div>
 
         </div>
 
@@ -45,6 +44,8 @@
 </template>
 
 <script>
+import { ref } from 'vue';
+
 
 export default {
 
@@ -52,7 +53,7 @@ export default {
         return {
 
             tasksItem: '',
-            tasks: [],
+            tasks: ref([]),
             placeHolder: "To Do",
         }
     },
@@ -72,12 +73,20 @@ export default {
             this.$emit('close');
         },
 
-        addItem(item) {
+        addItem() {
 
-            this.tasks.push(item)
-            this.placeHolder = 'To Do';
+            if (this.tasksItem.trim() !== '') {
+                this.tasks.push({
+                    id: this.tasks.length + 1,
+                    taskName: this.tasksItem.trim()
+                });
+                this.tasksItem = '';
+                this.placeHolder = 'To Do';
+                console.log(this.tasks);
+                
+            }
 
-            console.log(this.tasks);
+            
 
         },
 

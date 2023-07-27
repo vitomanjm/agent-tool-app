@@ -1,6 +1,5 @@
 <template>
-
-<div class="
+    <div class="
     rounded-xl
     bg-slate-400
     w-auto h-auto 
@@ -12,7 +11,7 @@
     ">
         AGENT TOOL
     </div>
-    
+
     <router-view></router-view>
 
     <div class="
@@ -28,11 +27,16 @@ w-32 h-auto
 bg-slate-300">
 
         <router-link to="/">Home</router-link>
+
         <router-link to="/Alarm">Alarm</router-link>
+
         <router-link to="/ToDoList"> To Do List</router-link>
+
         <router-link to="/HoursCalculator">Hours calculator</router-link>
 
     </div>
 </template>
 
-<script></script>
+<script>
+
+</script>

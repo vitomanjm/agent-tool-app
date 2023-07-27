@@ -1,6 +1,6 @@
 
 <script>
-import { addSeconds, format, differenceInMilliseconds } from 'date-fns';
+import { format, differenceInMilliseconds } from 'date-fns';
 import { ref } from 'vue';
 
 export default {
@@ -30,21 +30,28 @@ export default {
             this.$emit('close');
         },
 
+        parseTime(timeString) {
+            const [hours, minutes] = timeString.split(':');
+            return new Date(0, 0, 0, hours, minutes);
+        },
+
         calculateHours() {
             if (this.startTime && this.endTime) {
+                const start = this.parseTime(this.startTime);
+                const end = this.parseTime(this.endTime);
 
-                
-                
+                if (isNaN(start) || isNaN(end)) {
+                    this.hoursResult = 'Invalid time format';
+                } else {
+                    const millisecondsDifference = differenceInMilliseconds(end, start);
+                    const hours = Math.floor(millisecondsDifference / (1000 * 60 * 60));
+                    const minutes = Math.floor((millisecondsDifference % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((millisecondsDifference % (1000 * 60)) / 1000);
 
-                this.hoursResult =  differenceInMilliseconds(
-                    new Date(this.endTime), 
-                    new Date(this.startTime)
-                    );
-
-                
-
+                    this.hoursResult = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                }
             } else {
-                this.hoursResult = null;
+                this.hoursResult = '';
             }
         },
 
@@ -86,7 +93,7 @@ export default {
                         Close
                     </button>
                 </div>
-                <div v-if="hoursResult">
+                <div>
                     <p class="p-2 m-2">Calculated: {{ hoursResult }}</p>
                 </div>
             </div>
