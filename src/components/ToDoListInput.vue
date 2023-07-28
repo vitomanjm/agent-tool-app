@@ -8,6 +8,7 @@
             border-slate-800 
             flex-col
             space-y-6
+            rounded-xl 
             ">
 
             <h1 class="text-3xl">Add your tasks:</h1>

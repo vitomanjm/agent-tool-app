@@ -67,6 +67,7 @@ export default {
             flex-col
             space-y-8
             h-auto w-auto
+            rounded-xl 
             ">
 
             <h1 class="text-3xl m-2 p-2">Calculate your hours</h1>

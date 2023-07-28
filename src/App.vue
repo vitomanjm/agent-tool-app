@@ -45,6 +45,14 @@ bg-slate-300">
         </router-link>
 
     </div>
+
+    <footer class="footer footer-center p-1 bg-base-300 text-base-content">
+        <div>
+            <p>2023, Lean-tech, Growth Project. Vitomanjm, Online Repository: https://github.com/vitomanjm/agent-tool-app
+            </p>
+        </div>
+    </footer>
+
 </template>
 
 <script>

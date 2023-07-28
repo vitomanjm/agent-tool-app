@@ -9,6 +9,7 @@
         flex-col
         space-y-8
         h-auto w-auto
+        rounded-xl 
         ">
             <h2 class="text-3xl">Set up your Alarm!</h2>
 
