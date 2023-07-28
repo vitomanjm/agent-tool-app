@@ -11,14 +11,14 @@ export default {
     data() {
         return {
 
-            isOpen: false
+            isOpen: true,
         }
     },
 
     methods: {
 
         Open() {
-            this.isOpen = !this.isOpen;
+            this.isOpen = true
         },
 
         close() {
@@ -27,19 +27,14 @@ export default {
 
     }
 
-
 }
 
 </script>
 
 <template>
-    <div>
-        <button @click="Open">Hours Calculator</button>
-    </div>
 
     <div v-if="isOpen">
         <HoursCalcInput :isOpen="isOpen" @close="close"></HoursCalcInput>
 
     </div>
-
 </template>

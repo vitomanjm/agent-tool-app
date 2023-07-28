@@ -21,22 +21,31 @@ flex
 flex-col
 place-items-center
 text-center
-space-y-32
+space-y-24
 text-sm
 w-32 h-auto
 bg-slate-300">
 
-        <router-link to="/">Home</router-link>
 
-        <router-link to="/Alarm">Alarm</router-link>
 
-        <router-link to="/ToDoList"> To Do List</router-link>
+        <router-link to="/">
+            <button class="btn btn-outline">Home</button>
+        </router-link>
 
-        <router-link to="/HoursCalculator">Hours calculator</router-link>
+        <router-link to="/Alarm">
+            <button class="btn btn-outline"  @click="Open">Alarm</button>
+        </router-link>
+
+        <router-link to="/ToDoList"> 
+            <button class="btn btn-outline">To Do List</button>
+        </router-link>
+
+        <router-link to="/HoursCalculator">
+            <button class="btn btn-outline">Hours calculator</button>
+        </router-link>
 
     </div>
 </template>
 
 <script>
-
 </script>

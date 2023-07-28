@@ -11,19 +11,20 @@ export default {
     data() {
         return {
 
-            isOpen: false
+            isOpen: true,
         }
     },
 
     methods: {
 
         Open() {
-            this.isOpen = !this.isOpen;
+            this.isOpen = true
         },
 
         close() {
             this.isOpen = false
         }
+
     }
 
 }
@@ -32,14 +33,10 @@ export default {
 
 
 <template>
-    <div>
-        <button @click="Open">To-Do List</button>
-    </div>
 
-    <div v-if="isOpen"> 
-    
-        <ToDoListInput :isOpen="isOpen" @close="close"></ToDoListInput> 
-    
-    </div>
+    <div v-if="isOpen">
 
+        <ToDoListInput :isOpen="isOpen" @close="close"></ToDoListInput>
+
+    </div>
 </template>

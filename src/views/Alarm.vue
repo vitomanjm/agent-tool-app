@@ -12,7 +12,7 @@ export default {
 
         return {
 
-            isOpen: false,
+            isOpen: true,
         }
     },
 
@@ -28,7 +28,6 @@ export default {
 
     },
 
-
 }
 
 
@@ -37,17 +36,10 @@ export default {
 
 
 <template>
-    <div>
-
-        <button @click="Open">
-            Alarm
-        </button>
-
-    </div>
 
     <div v-if="isOpen">
 
-        <AlarmInput :isOpen="isOpen" @close="close">
+        <AlarmInput  :isOpen="isOpen" @close="close">
         </AlarmInput>
 
     </div>
