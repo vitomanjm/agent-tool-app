@@ -1,5 +1,5 @@
 <template>
-    <form class=" m-8 absolute inset-0 flex items-center justify-center" @submit.prevent="tasksItem">
+    <form class=" m-8 inset-0 flex items-center justify-center  my-16 mr-48" @submit.prevent="tasksItem ">
 
         <div class="
             font-bold 

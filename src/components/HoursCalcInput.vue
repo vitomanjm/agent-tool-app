@@ -57,7 +57,7 @@ export default {
 </script>
 
 <template>
-    <div class=" m-2 absolute inset-0 flex items-center justify-center">
+    <div class="  my-14 mr-48 inset-0 flex items-center justify-center">
 
         <div class="
             font-bold 

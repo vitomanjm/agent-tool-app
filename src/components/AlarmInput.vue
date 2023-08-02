@@ -1,5 +1,5 @@
 <template>
-    <section class="fixed inset-0 flex items-center justify-center ">
+    <section class="inset-0 flex items-center justify-center my-16 mr-48">
 
         <div class="
         font-bold 
