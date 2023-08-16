@@ -1,31 +1,29 @@
 <template>
-    <section class="inset-0 flex items-center justify-center my-16 mr-48">
+    <section class="inset-0 flex items-center justify-center my-12 mx-24">
 
         <div class="
         font-bold 
-        p-28
-        bg-stone-300
-        border-slate-800 
+        p-24
         flex-col
         space-y-8
         h-auto w-auto
         rounded-xl 
         ">
-            <h2 class="text-3xl">Set up your Alarm!</h2>
+            <h2 class="ml-20 text-2xl">Set up your Alarm!</h2>
 
             <h3> CDT Time Now: {{ timeNow }} </h3>
 
-            <input type="time" v-model="alarmTime" class="text-3xl mb-4 ">
+            <input type="time" v-model="alarmTime" class="text-2xl ml-16 pl-24">
 
             <h4 v-bind="selectedAlarm" v-if="selectedAlarm">You alarm is been set at: {{ formatAlarm(selectedAlarm) }}</h4>
 
-            <div class=" flex-row space-x-6">
+            <div class="flex-row ">
 
-                <button class="ml-2 p-2 w-auto h-auto bg-slate-400 rounded-s-3xl" @click="setAlarm">
+                <button class="m-2 p-1 w-auto h-auto rounded-s-3xl" @click="setAlarm">
                     Set Alarm
                 </button>
 
-                <button class="ml-2 p-2 w-auto h-auto bg-slate-400 rounded-s-3xl" @click="close">
+                <button class="m-2 p-1 w-auto h-autorounded-s-3xl" @click="close">
                     Close Alarm
                 </button>
 

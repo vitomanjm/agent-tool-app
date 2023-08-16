@@ -1,5 +1,5 @@
 <template>
-    <div class="flex-auto">
+    <div class="flex">
         <div class="h-auto w-auto bg-transparent">
             <ul class="menu w-auto rounded-box">
                 <li>
@@ -19,7 +19,7 @@
                 </li>
             </ul>
         </div>
-        <div class="flex-auto">
+        <div class="flex-none">
             <slot></slot>
         </div>
     </div>

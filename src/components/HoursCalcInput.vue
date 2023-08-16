@@ -1,7 +1,6 @@
 
 <script>
-import { format, differenceInMilliseconds } from 'date-fns';
-import { ref } from 'vue';
+import { differenceInMilliseconds } from 'date-fns';
 
 export default {
 
@@ -46,28 +45,19 @@ export default {
 
             this.hoursResult = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
         }
-
-
-
-
     },
-
 }
-
 </script>
 
 <template>
-    <div class="  my-14 mr-48 inset-0 flex items-center justify-center">
-
+    <div class="flex items-center justify-center m-auto">
         <div class="
             font-bold 
-            p-20
-            bg-stone-300
-            border-slate-800 
             flex-col
             space-y-8
             h-auto w-auto
-            rounded-xl 
+            rounded-xl
+            p-14 ml-20 mb-16 mt-4
             ">
 
             <h1 class="text-3xl m-2 p-2">Calculate your hours</h1>
@@ -82,10 +72,11 @@ export default {
                     <input class="p-2 m-2" type="time" v-model="endTime" />
                 </div>
                 <div>
-                    <button class="flex-col m-4 ml-8 p-2 w-auto h-auto bg-slate-400 rounded-s-3xl space-x-2" @click="calculateHours">
+                    <button class="flex-col m-4 ml-8 p-2 w-auto h-auto rounded-s-3xl space-x-2"
+                        @click="calculateHours">
                         Calculate Hours
                     </button>
-                    <button class="flex-col m-4 ml-8 p-2 w-auto h-auto bg-slate-400 rounded-s-3xl space-x-2" @click="close">
+                    <button class="flex-col m-4 ml-8 p-2 w-auto h-auto rounded-s-3xl space-x-2" @click="close">
                         Close
                     </button>
                 </div>
@@ -94,8 +85,5 @@ export default {
                 </div>
             </div>
         </div>
-
-
-
     </div>
 </template>

@@ -1,39 +1,37 @@
 <template>
-    <form class=" m-8 inset-0 flex items-center justify-center  my-16 mr-48" @submit.prevent="tasksItem ">
+    <form class="flex items-center justify-center m-16" @submit.prevent="tasksItem ">
 
         <div class="
             font-bold 
-            p-28
-            bg-stone-300
-            border-slate-800 
+            p-16
             flex-col
-            space-y-6
+            space-y-auto
             rounded-xl 
             ">
 
             <h1 class="text-3xl">Add your tasks:</h1>
-
+        
             <input v-model="tasksItem" type="text" :placeholder="placeHolder">
 
-            <button class="ml-2 p-2 w-auto h-auto bg-slate-400 rounded-s-3xl" @click="addItem(tasksItem)">Add Item</button>
+            <button class="ml-2 p-2 w-auto h-auto rounded-s-3xl" @click="addItem(tasksItem)">Add Item</button>
 
             <label class="ml-2 p-2 w-auto h-auto">
                 Create alarm
                 <input type="checkbox">
             </label>
 
-            <p>Tasks in list:</p>
+            <p class="m-4">Tasks in list:</p>
             <p v-for="(task, index) in tasks" :key="index"> {{ task.taskName }}</p>
 
             <div class="flex flex-row items-center justify-center">
-                <button class="m-4 p-2 w-auto h-auto bg-slate-400 rounded-s-3xl" @click="deleteItem()" v-if="tasks">
+                <button class="m-4 p-2 w-auto h-autorounded-s-3xl" @click="deleteItem()" v-if="tasks">
                     Delete Item
                 </button>
-
-                <button class="m-4 p-2 w-auto h-auto bg-slate-400 rounded-s-3xl " @click="close">
+            
+                <button class="m-4 p-2 w-auto h-auto rounded-s-3xl " @click="close">
                     Close
                 </button>
-
+            
             </div>
 
         </div>
