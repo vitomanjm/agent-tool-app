@@ -10,9 +10,9 @@ export default {
 
     methods: {
         toggleStyle() {
-            const html = document.querySelector('html');
-            if (html) {
-                html.setAttribute('data-theme', html.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+            const htmlSelector = document.querySelector('html');
+            if (htmlSelector) {
+                htmlSelector.setAttribute('data-theme', htmlSelector.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
             }
         }
     }

@@ -1,9 +1,9 @@
 <template>
-    <section class="inset-0 flex items-center justify-center my-12 mx-24">
+    <section class="inset-0 flex items-center justify-center rounded-sm border-2">
 
         <div class="
-        font-bold 
-        p-24
+        m-4
+        p-auto
         flex-col
         space-y-8
         h-auto w-auto
@@ -11,13 +11,13 @@
         ">
             <h2 class="ml-20 text-2xl">Set up your Alarm!</h2>
 
-            <h3> CDT Time Now: {{ timeNow }} </h3>
+            <h4> CDT Time Now: {{ timeNow }} </h4>
 
-            <input type="time" v-model="alarmTime" class="text-2xl ml-16 pl-24">
+            <input type="time" v-model="alarmTime" class="text-base ml-16 pl-24">
 
             <h4 v-bind="selectedAlarm" v-if="selectedAlarm">You alarm is been set at: {{ formatAlarm(selectedAlarm) }}</h4>
 
-            <div class="flex-row ">
+            <div class="flex-row ml-4">
 
                 <button class="m-2 p-1 w-auto h-auto rounded-s-3xl" @click="setAlarm">
                     Set Alarm
@@ -98,7 +98,8 @@ export default {
             this.selectedAlarm = alarmDate;
 
             const timeUntilAlarm = alarmDate - timeNow;
-
+            
+            this.$emit('alarmSet', this.selectedAlarm);
 
 
             setTimeout(() => {
@@ -129,9 +130,8 @@ export default {
 
         alarmSound() {
             this.alarmSong.play();
-            this.alarmSong.loop = true;
+            
         },
     }
 }
 </script>
-

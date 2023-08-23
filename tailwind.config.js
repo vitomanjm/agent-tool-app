@@ -52,9 +52,6 @@ module.exports = {
 
   variants: {
     extend: {
-      backgroundColor: ['dark'],
-      borderColor: ['dark'],
-      textColor: ['dark'],
     },
   },
 

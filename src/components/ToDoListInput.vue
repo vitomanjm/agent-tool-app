@@ -1,12 +1,13 @@
 <template>
-    <form class="flex items-center justify-center m-16" @submit.prevent="tasksItem ">
+    <form class="flex items-center justify-center m-2" @submit.prevent="tasksItem ">
 
         <div class="
             font-bold 
-            p-16
+            p-12
             flex-col
             space-y-auto
             rounded-xl 
+            border-2	
             ">
 
             <h1 class="text-3xl">Add your tasks:</h1>
@@ -57,13 +58,12 @@ export default {
 
     props: {
 
-        isOpen: {
-            type: Boolean,
-            required: true
-        }
-
-
+    isOpen: {
+    type: Boolean,
+    required: true
+    }
     },
+    
     methods: {
 
         close() {

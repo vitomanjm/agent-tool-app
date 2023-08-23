@@ -52,6 +52,7 @@ export default {
 <template>
     <div class="flex items-center justify-center m-auto">
         <div class="
+            border-2	
             font-bold 
             flex-col
             space-y-8
