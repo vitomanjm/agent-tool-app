@@ -19,8 +19,10 @@
                 </li>
             </ul>
         </div>
+
         <div class="flex-none">
             <slot></slot>
         </div>
     </div>
+
 </template>

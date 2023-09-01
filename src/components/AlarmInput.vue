@@ -1,5 +1,5 @@
 <template>
-    <section class="inset-0 flex items-center justify-center rounded-sm border-2">
+    <section class="flex items-center justify-center rounded-sm border-2">
 
         <div class="
         m-4
@@ -9,21 +9,21 @@
         h-auto w-auto
         rounded-xl 
         ">
-            <h2 class="ml-20 text-2xl">Set up your Alarm!</h2>
+            <h2 class="ml-28 text-2xl">Set up your Alarm!</h2>
 
-            <h4> CDT Time Now: {{ timeNow }} </h4>
+            <h4 class="ml-8"> CDT Time Now: {{ timeNow }} </h4>
 
-            <input type="time" v-model="alarmTime" class="text-base ml-16 pl-24">
+            <input type="time" v-model="alarmTime" class="text-base ml-20 pl-24">
 
-            <h4 v-bind="selectedAlarm" v-if="selectedAlarm">You alarm is been set at: {{ formatAlarm(selectedAlarm) }}</h4>
+            <h4 class="m-8  text-2xl" v-bind="selectedAlarm" v-if="selectedAlarm">You alarm is been set at: {{ alarmStore.formatAlarm(selectedAlarm) }}</h4>
 
-            <div class="flex-row ml-4">
+            <div class="flex-row ml-20">
 
-                <button class="m-2 p-1 w-auto h-auto rounded-s-3xl" @click="setAlarm">
+                <button class="m-2 p-1 btn btn-primary" @click="setAlarm">
                     Set Alarm
                 </button>
 
-                <button class="m-2 p-1 w-auto h-autorounded-s-3xl" @click="close">
+                <button class="m-2 p-1 btn btn-ghost" @click="close">
                     Close Alarm
                 </button>
 
@@ -38,6 +38,7 @@
 <script>
 import { ref, onMounted } from 'vue';
 import { format, addSeconds } from 'date-fns';
+import { useStore } from '../stores/storeAlarm';
 
 export default {
 
@@ -46,15 +47,13 @@ export default {
         return {
             alarmTime: '',
             selectedAlarm: '',
-            alarmSong: new Audio("https://2u039f-a.akamaihd.net/downloads/ringtones/files/mp3/techno-dog-25297.mp3"),
-
         }
     },
 
     setup() {
 
 
-
+        const alarmStore = useStore();
         const timeNow = ref(format(new Date(), 'HH:mm:ss'));
 
         onMounted(() => {
@@ -63,7 +62,10 @@ export default {
             }, 1000);
         })
 
-        return { timeNow }
+        return { 
+            timeNow, 
+            alarmStore,
+        }
     },
 
     props: {
@@ -78,17 +80,14 @@ export default {
     methods: {
         close() {
             this.$emit('close');
-            this.alarmSong.pause();
+            this.alarmStore.alarmPause();
         },
 
         setAlarm() {
 
             const timeNow = new Date();
-
             const selectedTime = this.alarmTime;
-
             const [selectedHour, selectedMinutes] = selectedTime.split(':');
-
             const alarmDate = new Date();
 
             alarmDate.setHours(selectedHour);
@@ -96,41 +95,18 @@ export default {
             alarmDate.setSeconds(0);
 
             this.selectedAlarm = alarmDate;
-
             const timeUntilAlarm = alarmDate - timeNow;
-            
-            this.$emit('alarmSet', this.selectedAlarm);
-
+            this.alarmStore.addAlarm(this.selectedAlarm)
 
             setTimeout(() => {
-                this.alarmSound()
+                this.alarmStore.alarmSound()
             },
                 timeUntilAlarm);
 
-
-
             console.log(alarmDate);
-
             console.log(this.selectedAlarm);
-
             console.log(timeNow);
-
             console.log(timeUntilAlarm);
-
-
-
-
-        },
-
-        formatAlarm(date) {
-            return format(date, 'HH:mm:ss');
-
-        },
-
-
-        alarmSound() {
-            this.alarmSong.play();
-            
         },
     }
 }

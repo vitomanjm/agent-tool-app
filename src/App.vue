@@ -1,12 +1,10 @@
 <template>
-
     <navBar></navBar>
     <leftMenu>
-        <Home> 
-        <router-view></router-view>
+        <Home>
+            <router-view></router-view>
         </Home>
     </leftMenu>
-    <footerr></footerr>
 </template>
 
 <script>
@@ -23,7 +21,7 @@ export default {
         navBar,
         leftMenu,
         footerr,
-        
+
     },
 }
 

@@ -1,5 +1,5 @@
 <template>
-    <form class="flex items-center justify-center m-2" @submit.prevent="tasksItem ">
+    <form class="flex items-center justify-center m-2" @submit.prevent="tasksItem">
 
         <div class="
             font-bold 
@@ -11,91 +11,62 @@
             ">
 
             <h1 class="text-3xl">Add your tasks:</h1>
-        
-            <input v-model="tasksItem" type="text" :placeholder="placeHolder">
 
-            <button class="ml-2 p-2 w-auto h-auto rounded-s-3xl" @click="addItem(tasksItem)">Add Item</button>
-
-            <label class="ml-2 p-2 w-auto h-auto">
-                Create alarm
-                <input type="checkbox">
-            </label>
-
-            <p class="m-4">Tasks in list:</p>
-            <p v-for="(task, index) in tasks" :key="index"> {{ task.taskName }}</p>
+            
 
             <div class="flex flex-row items-center justify-center">
-                <button class="m-4 p-2 w-auto h-autorounded-s-3xl" @click="deleteItem()" v-if="tasks">
-                    Delete Item
-                </button>
-            
-                <button class="m-4 p-2 w-auto h-auto rounded-s-3xl " @click="close">
+            <input v-model="toDoStore.tasksItem" type="text" :placeholder="placeHolder">
+            <button class="m-4 p-2 btn btn-primary" @click="toDoStore.addItem(tasksItem)">Add
+                Item</button>
+            </div>
+            <div class="flex flex-row items-center justify-center">
+                <button class="m-4 p-2 btn btn-ghost" @click="close">
                     Close
                 </button>
-            
+
             </div>
 
         </div>
-
 
     </form>
 </template>
 
 <script>
 import { ref } from 'vue';
+import { useStore } from '../stores/storeToDoList';
 
 
 export default {
 
     data() {
         return {
-
-            tasksItem: '',
-            tasks: ref([]),
+            alarmOpen: false,
             placeHolder: "To Do",
+        }
+    },
+
+
+    setup() {
+        const toDoStore = useStore();
+
+        return {
+            toDoStore,
         }
     },
 
     props: {
 
-    isOpen: {
-    type: Boolean,
-    required: true
-    }
+        isOpen: {
+            type: Boolean,
+            required: true
+        }
     },
-    
+
     methods: {
 
         close() {
             this.$emit('close');
         },
-
-        addItem() {
-
-            if (this.tasksItem.trim() !== '') {
-                this.tasks.push({
-                    id: this.tasks.length + 1,
-                    taskName: this.tasksItem.trim()
-                });
-                this.tasksItem = '';
-                this.placeHolder = 'To Do';
-                console.log(this.tasks);
-                
-            }
-
-            
-
-        },
-
-        deleteItem() {
-
-            this.tasks.pop()
-
-            console.log(this.tasks);
-        }
     }
-
 }
-
-
 </script>
