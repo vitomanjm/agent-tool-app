@@ -42,7 +42,9 @@ export default {
 
 
 <template>
-    <button class="flex btn btn-primary m-2 ml-72 end-2" @click="Open"> Open Alarm</button>
+
+    <div class="ml-0">
+    <button class="flex btn btn-primary m-2 ml-96 end-2" @click="Open"> Open Alarm</button>
 
     <div class="flex flex-row">
     <div class="grow grid grid-rows-2 grid-flow-col gap-1">
@@ -52,9 +54,7 @@ export default {
                 <div class="card-body items-center text-center">
 
                     <h2 class="card-title">Alarma #{{ index + 1 }}</h2>
-
                     <p class="text-xs"> Alarm schedule at: {{ alarmStore.formatAlarm(alarm) }}</p>
-
                     <div class="card-actions justify-end m-2">
                         <button class="btn btn-primary">Snooze</button>
                         <button class="btn btn-ghost" @click="alarmStore.deleteAlarm(selectedAlarm)">Delete</button>
@@ -63,15 +63,13 @@ export default {
             </div>
         </div>
     </div> 
-
-        <div class="m-4">
-        <div class="justify-items-center align-center">
-            <AlarmInput v-if="isOpen" :isOpen="isOpen" @close="close"></AlarmInput>
+    <div class="flex flex-none absolute m-4">
+        <div class="justify-items-center ml-52">
+            <div class="items-center"><AlarmInput v-if="isOpen" :isOpen="isOpen" @close="close"></AlarmInput></div> 
         </div>
-        </div>
-
-    
+        </div>   
     </div>
+</div>
 </template>
 
 

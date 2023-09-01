@@ -1,5 +1,5 @@
 <template>
-    <section class="flex items-center justify-center rounded-sm border-2">
+    <section class="flex items-center justify-center bg-slate-800 border-2 rounded-box opacity-90">
 
         <div class="
         m-4
@@ -9,7 +9,7 @@
         h-auto w-auto
         rounded-xl 
         ">
-            <h2 class="ml-28 text-2xl">Set up your Alarm!</h2>
+            <h2 class="ml-24 text-2xl">Set up your Alarm</h2>
 
             <h4 class="ml-8"> CDT Time Now: {{ timeNow }} </h4>
 

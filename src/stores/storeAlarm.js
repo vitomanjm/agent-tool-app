@@ -19,11 +19,11 @@ export const useStore = defineStore('store', {
             return format(date, 'HH:mm:ss');
         },
         alarmSound() {
+
             this.alarmSong.play();
-            
         },
         alarmPause(){
-            this.alarmStore.alarmSound()
+            this.alarmSong.pause()
         }
     },
 

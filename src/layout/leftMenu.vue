@@ -1,6 +1,6 @@
 <template>
     <div class="flex">
-        <div class="h-auto w-auto bg-transparent">
+        <div class="h-auto w-32 bg-transparent">
             <ul class="menu w-auto rounded-box">
                 <li>
                     <router-link to="/Alarm">
