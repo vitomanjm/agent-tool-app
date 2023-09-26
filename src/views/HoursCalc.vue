@@ -1,6 +1,7 @@
 <script>
 
 import HoursCalcInput from '../components/HoursCalcInput.vue'
+import {useStoreHoursCalc} from "../stores/storeHoursCalc.js"
 
 export default {
 
@@ -8,33 +9,18 @@ export default {
         HoursCalcInput,
     },
 
-    data() {
-        return {
+    setup() {
 
-            isOpen: true,
-        }
-    },
-
-    methods: {
-
-        Open() {
-            this.isOpen = true
-        },
-
-        close() {
-            this.isOpen = false
-        }
-
-    }
+const HoursCalcStore = useStoreHoursCalc()
+return { HoursCalcStore }   
+}
 
 }
 
 </script>
 
 <template>
-
-    <div v-if="isOpen">
-        <HoursCalcInput :isOpen="isOpen" @close="close"></HoursCalcInput>
-
+    <div >
+        <HoursCalcInput v-if="HoursCalcStore.isOpen" :isOpen="HoursCalcStore.isOpen" @close="HoursCalcStore.close"></HoursCalcInput>
     </div>
 </template>

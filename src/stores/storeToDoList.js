@@ -1,8 +1,9 @@
 import { defineStore } from 'pinia';
 
 
-export const useStore = defineStore('store', {
+export const useStoreToDo = defineStore('toDoStore', {
     state: () => ({ 
+        isOpen: false,
         tasks: [],
         tasksItem: '',
     }),
@@ -10,7 +11,6 @@ export const useStore = defineStore('store', {
     actions: {
         
         addItem() {
-
             if (this.tasksItem.trim() !== '') {
                 this.tasks.push({
                     id: this.tasks.length + 1,
@@ -19,14 +19,21 @@ export const useStore = defineStore('store', {
                 this.tasksItem = '';
                 this.placeHolder = 'To Do';
                 console.log(this.tasks);
+                this.close()
                 
             }
         },
-
         deleteItem() {
             this.tasks.pop()
             console.log(this.tasks);
-        }
+        },
+        Open() {
+            this.isOpen = true
+        },
+
+        close() {
+            this.isOpen = false;
+        },
     },
 
 })

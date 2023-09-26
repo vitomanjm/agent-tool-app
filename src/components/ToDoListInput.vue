@@ -1,39 +1,26 @@
 <template>
-    <form class="flex items-center justify-center m-2" @submit.prevent="tasksItem">
 
-        <div class="
-            font-bold 
-            p-12
-            flex-col
-            space-y-auto
-            rounded-xl 
-            border-2	
-            ">
+    <div class="absolute m-8 top-8 bottom-8 left-48 right-48">
+    <div class="absolute w-96 h-72 bg-slate-800 border-2 rounded-box opacity-100" @submit.prevent="tasksItem">
 
-            <h1 class="text-3xl">Add your tasks:</h1>
-
-            
-
+        <h1 class="flex justify-center items-center text-3xl mt-8">Add your tasks:</h1>
+        <div class="font-bold p-12 flex-col space-y-auto">
             <div class="flex flex-row items-center justify-center">
-            <input v-model="toDoStore.tasksItem" type="text" :placeholder="placeHolder">
-            <button class="m-4 p-2 btn btn-primary" @click="toDoStore.addItem(tasksItem)">Add
-                Item</button>
+                <input class="input input-bordered input-primary w-auto max-w-xs" v-model="toDoStore.tasksItem" type="text" :placeholder="placeHolder">
+                <button class="m-4 p-2 btn btn-primary" @click="toDoStore.addItem(tasksItem)">Add Item</button>
             </div>
             <div class="flex flex-row items-center justify-center">
-                <button class="m-4 p-2 btn btn-ghost" @click="close">
-                    Close
-                </button>
-
+                <button class="m-4 p-2 btn btn-ghost" @click="toDoStore.close"> Close </button>
             </div>
 
         </div>
-
-    </form>
+    </div>
+    </div>
 </template>
 
 <script>
 import { ref } from 'vue';
-import { useStore } from '../stores/storeToDoList';
+import { useStoreToDo } from '../stores/storeToDoList';
 
 
 export default {
@@ -47,26 +34,11 @@ export default {
 
 
     setup() {
-        const toDoStore = useStore();
+        const toDoStore = useStoreToDo();
 
         return {
-            toDoStore,
+            toDoStore
         }
     },
-
-    props: {
-
-        isOpen: {
-            type: Boolean,
-            required: true
-        }
-    },
-
-    methods: {
-
-        close() {
-            this.$emit('close');
-        },
-    }
 }
 </script>

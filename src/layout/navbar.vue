@@ -5,7 +5,7 @@
             </div>
 
             <div class="flex navbar-center">
-                <router-link class="btn btn-ghost normal-case text-xl" :to="{ name: 'Home' }">AGENT TOOL</router-link>
+                <router-link class="btn btn-ghost normal-case text-xl ml-10" :to="{ name: 'Home' }">AGENT TOOL</router-link>
             </div>
 
             <div class="navbar-end">
