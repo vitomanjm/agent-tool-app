@@ -1,90 +1,53 @@
+<template>
+    <div class="absolute top-28 bottom-20 left-32 right-40 ">
+        <div class="flex items-center justify-center">    
+            <div class="flex-col space-y-8 p-8 border-2 rounded-box border-current bg-slate-800 text-white">
+                <div class="flex items-center justify-center font-bold">
+                    <h1 class="text-2xl m-1 p-2">Calculate your hours</h1>
+                </div>
+
+                <div class="items-center justify-center m-2 p-4 ">
+                    <div class="flex items-center justify-center">
+                        <label class="p-2 m-2 font-bold ">Start time:</label>
+                        <input class="input input-bordered input-primary w-auto max-w-xs p-2 m-2 text-gray-600" type="time"
+                            v-model="HoursCalcStore.startTime" />
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <label class="p-2 m-2 font-bold "> End time: </label>
+                        <input class="input input-bordered input-primary w-auto max-w-xs text-gray-600" type="time" v-model="HoursCalcStore.endTime" />
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <button class="btn btn-primary m-4 p-2" @click="HoursCalcStore.calculateHours">
+                            Calculate Hours
+                        </button>
+                        <button class="btn m-4 p-2" @click="HoursCalcStore.close">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="flex items-center justify-center" v-if="HoursCalcStore.hoursResult">
+            <p class="border-2 rounded-box font-bold m-2 p-4"> Hours calculated: {{ HoursCalcStore.hoursResult }} </p>
+        </div>
+</div>
+</template>
 
 <script>
-import { differenceInMilliseconds } from 'date-fns';
+import {useStoreHoursCalc} from "../stores/storeHoursCalc.js"
 
 export default {
 
-    data() {
 
-        return {
-            hoursResult: '',
-            startTime: '',
-            endTime: '',
-        }
+        setup() {
 
-    },
+            const HoursCalcStore = useStoreHoursCalc()
+            return { HoursCalcStore }   
+}
+        
 
-    props: {
-
-        isOpen: {
-            type: Boolean,
-            required: true
-        }
-
-    },
-
-    methods: {
-
-        close() {
-            this.$emit('close');
-        },
-
-        parseTime(timeString) {
-            const [hours, minutes] = timeString.split(':');
-            return new Date(0, 0, 0, hours, minutes);
-        },
-
-        calculateHours() {
-
-            const start = this.parseTime(this.startTime);
-            const end = this.parseTime(this.endTime);
-            const millisecondsDifference = differenceInMilliseconds(end, start);
-            const hours = Math.floor(millisecondsDifference / (1000 * 60 * 60));
-            const minutes = Math.floor((millisecondsDifference % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((millisecondsDifference % (1000 * 60)) / 1000);
-
-            this.hoursResult = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        }
-    },
 }
 </script>
 
-<template>
-    <div class="flex items-center justify-center m-auto">
-        <div class="
-            border-2	
-            font-bold 
-            flex-col
-            space-y-8
-            h-auto w-auto
-            rounded-xl
-            p-14 ml-20 mb-16 mt-4
-            ">
 
-            <h1 class="text-3xl m-2 p-2">Calculate your hours</h1>
-
-            <div>
-                <div>
-                    <label class="p-2 m-2">Start time:</label>
-                    <input class="p-2 m-2" type="time" v-model="startTime" />
-                </div>
-                <div>
-                    <label class="p-2 m-2">End time:</label>
-                    <input class="p-2 m-2" type="time" v-model="endTime" />
-                </div>
-                <div>
-                    <button class="flex-col m-4 ml-8 p-2 w-auto h-auto rounded-s-3xl space-x-2"
-                        @click="calculateHours">
-                        Calculate Hours
-                    </button>
-                    <button class="flex-col m-4 ml-8 p-2 w-auto h-auto rounded-s-3xl space-x-2" @click="close">
-                        Close
-                    </button>
-                </div>
-                <div>
-                    <p class="p-4 ml-16"> Calculated: {{ hoursResult }} </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</template>

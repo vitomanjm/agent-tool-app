@@ -1,38 +1,32 @@
 <template>
-    <section class="flex items-center justify-center bg-slate-800 border-2 rounded-box opacity-90">
+    <Teleport to="#app">
 
-        <div class="
-        m-4
-        p-auto
-        flex-col
-        space-y-8
-        h-auto w-auto
-        rounded-xl 
-        ">
-            <h2 class="ml-24 text-2xl">Set up your Alarm</h2>
+        <div class="absolute mt-8 top-8 bottom-8 left-8 right-8">
+        <div class="flex items-center justify-center">
+            <div class="p-8 m-8 bg-slate-800 border-2 rounded-box opacity-100  w-96 h-auto">
+                <div class="card">
+                    <div class="card-body items-center text-center">
+                        <h2 class="text-2xl text-white">Set up your Alarm</h2>
+                        <h4 class="m-2 p-2 text-white"> CDT Time Now: {{ timeNow }} </h4>
+                        <input type="time" v-model="alarmTime" class="select select-primary w-full max-w-xs text-base">
+                        <input type="text" v-model="alarmName" class="input input-bordered input-primary w-full max-w-xs" :placeholder="placeHolder">
 
-            <h4 class="ml-8"> CDT Time Now: {{ timeNow }} </h4>
-
-            <input type="time" v-model="alarmTime" class="text-base ml-20 pl-24">
-
-            <h4 class="m-8  text-2xl" v-bind="selectedAlarm" v-if="selectedAlarm">You alarm is been set at: {{ alarmStore.formatAlarm(selectedAlarm) }}</h4>
-
-            <div class="flex-row ml-20">
-
-                <button class="m-2 p-1 btn btn-primary" @click="setAlarm">
-                    Set Alarm
-                </button>
-
-                <button class="m-2 p-1 btn btn-ghost" @click="close">
-                    Close Alarm
-                </button>
-
+                    </div>
+                </div>
+                <div class="flex items-center justify-center">
+                    <button class="m-4 p-2 btn btn-primary" @click="setAlarm">
+                        Set Alarm
+                    </button>
+                    <button class="m-4 p-2 btn" @click="alarmStore.close">
+                        Close
+                    </button>
+                </div>
             </div>
-
         </div>
+    </div>
 
+    </Teleport>
 
-    </section>
 </template>
 
 <script>
@@ -42,11 +36,15 @@ import { useStore } from '../stores/storeAlarm';
 
 export default {
 
+    components: {
+    },
+
     data() {
 
         return {
             alarmTime: '',
-            selectedAlarm: '',
+            placeHolder: 'Add a label to the alarm',
+            alarmName:  '',
         }
     },
 
@@ -54,7 +52,7 @@ export default {
 
 
         const alarmStore = useStore();
-        const timeNow = ref(format(new Date(), 'HH:mm:ss'));
+        const timeNow = ref(format(new Date(), 'HH:mm:ss', 'dd-mm-yyyy'));
 
         onMounted(() => {
             setInterval(() => {
@@ -62,26 +60,13 @@ export default {
             }, 1000);
         })
 
-        return { 
-            timeNow, 
+        return {
+            timeNow,
             alarmStore,
         }
     },
 
-    props: {
-
-        isOpen: {
-            type: Boolean,
-            required: true
-        }
-
-    },
-
     methods: {
-        close() {
-            this.$emit('close');
-            this.alarmStore.alarmPause();
-        },
 
         setAlarm() {
 
@@ -89,25 +74,26 @@ export default {
             const selectedTime = this.alarmTime;
             const [selectedHour, selectedMinutes] = selectedTime.split(':');
             const alarmDate = new Date();
-
             alarmDate.setHours(selectedHour);
             alarmDate.setMinutes(selectedMinutes);
             alarmDate.setSeconds(0);
-
-            this.selectedAlarm = alarmDate;
+            
+            if (alarmDate <= timeNow) {
+                alarmDate.setDate(alarmDate.getDate() + 1);
+            }
             const timeUntilAlarm = alarmDate - timeNow;
-            this.alarmStore.addAlarm(this.selectedAlarm)
-
-            setTimeout(() => {
+            const a = setTimeout(() => {
                 this.alarmStore.alarmSound()
-            },
-                timeUntilAlarm);
+            }, timeUntilAlarm);
 
-            console.log(alarmDate);
-            console.log(this.selectedAlarm);
-            console.log(timeNow);
-            console.log(timeUntilAlarm);
+            this.alarmStore.addAlarm({name: this.alarmName, date: alarmDate, id: a}); 
+            this.$emit("created", a)
+            this.alarmStore.close()
         },
-    }
+    },
+
+    emits: ["created" ]
 }
 </script>
+<style>
+</style>
