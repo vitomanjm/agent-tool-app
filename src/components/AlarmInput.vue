@@ -32,7 +32,7 @@
 <script>
 import { ref, onMounted } from 'vue';
 import { format, addSeconds } from 'date-fns';
-import { useStore } from '../stores/storeAlarm';
+import { useStoreAlarm } from '../stores/storeAlarm';
 
 export default {
 
@@ -51,7 +51,7 @@ export default {
     setup() {
 
 
-        const alarmStore = useStore();
+        const alarmStore = useStoreAlarm();
         const timeNow = ref(format(new Date(), 'HH:mm:ss', 'dd-mm-yyyy'));
 
         onMounted(() => {

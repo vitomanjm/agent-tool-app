@@ -37,14 +37,14 @@
 </template>
 
 <script>
-import { useStore } from '../stores/storeAlarm';
+import { useStoreAlarm } from '../stores/storeAlarm';
 import { useStoreToDo } from '../stores/storeToDoList';
 import { useStoreHoursCalc } from "../stores/storeHoursCalc";
 
 export default {
 
     setup() {
-        const alarmStore = useStore()
+        const alarmStore = useStoreAlarm()
         const toDoStore = useStoreToDo();
         const HoursCalcStore = useStoreHoursCalc();
         return { alarmStore, toDoStore, HoursCalcStore }

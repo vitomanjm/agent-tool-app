@@ -1,20 +1,20 @@
-import { useStore } from '../stores/storeAlarm';
+import { useStoreAlarm } from '../stores/storeAlarm';
 import { defineStore } from 'pinia';
 import { db } from '../dexieDataBase/db.js'
 
 
 export const useStoreToDo = defineStore('toDoStore', {
-    state: () => ({ 
+    state: () => ({
+        isOpen: false,
         isOpen: false,
         tasks: [],
         tasksItem: "",
-        taskName: "",
-        alarmstore: useStore(),
+        alarmstore: useStoreAlarm(),
         dbPush: "",
     }),
     getters: {},
     actions: {
-        
+
         Open() {
             this.isOpen = true
         },
@@ -23,50 +23,57 @@ export const useStoreToDo = defineStore('toDoStore', {
             this.isOpen = false;
         },
 
-        async addItem() {  
+        async addItem() {
 
-            try{
-            if (this.tasksItem.trim() !== '') {
-                this.tasks.push({
-                    id: this.tasks.length + 1,
-                    taskName: this.tasksItem.trim(),
-                });
-                this.dbPush = await db.toDo.add({
+            try {
+                if (this.tasksItem.trim() == '') return
+
+                const toDoId = await db.toDo.add({
                     taskName: this.tasksItem.trim(),
                 })
+
+                console.log('id dexie', toDoId);
+                this.tasks.push({
+                    id: toDoId,
+                    taskName: this.tasksItem.trim(),
+                });
+
                 this.tasksItem = '';
                 this.placeHolder = 'To Do';
-                console.log(this.dbPush, this.tasks);
+
                 this.close()
-                
             }
-        }
-            catch(error)
-            {
+            catch (error) {
                 console.log(error)
             }
         },
 
-        deleteItem(itemId) {
-            this.tasks = this.tasks.filter((x) => x.id != itemId.id)
-            this.alarmstore.deleteAlarm(itemId.alarmId);
-            console.log(this.tasks);
-            
+        async deleteItem(item) {
+
+            try {
+                if(item.alarmId)
+                {
+                    this.alarmstore.deleteAlarm(item.alarmId);
+                }
+                const a = await db.toDo.where('id').equals(item.id).delete();
+                this.tasks = this.tasks.filter((x) => x.id != item.id)
+                console.log(a);
+            }
+            catch { }
+
+
         },
 
-        updateItem(itemId, alarmId)
-        {
+        async updateItem(itemId, alarmId) {
             const a = this.tasks.find((x) => x.id == itemId)
-            if(!a)
-            {
-                return 
+            if (!a) {
+                return
             };
             a.alarmId = alarmId
-
-
+            await db.toDo.update(itemId, {alarmId: alarmId})
         },
 
- 
+
     },
 
 })

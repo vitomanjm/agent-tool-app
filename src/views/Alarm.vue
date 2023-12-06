@@ -31,7 +31,7 @@
 
 <script>
 import AlarmInput from '../components/AlarmInput.vue';
-import { useStore } from '../stores/storeAlarm';
+import { useStoreAlarm } from '../stores/storeAlarm';
 
 export default {
 
@@ -40,7 +40,7 @@ export default {
     },
 
     setup() {
-        const alarmStore = useStore()
+        const alarmStore = useStoreAlarm()
         return { alarmStore }
     },
 

@@ -34,7 +34,7 @@
 <script>
 import ToDoListInput from '../components/ToDoListInput.vue'
 import { useStoreToDo } from '../stores/storeToDoList';
-import { useStore } from '../stores/storeAlarm';
+import { useStoreAlarm } from '../stores/storeAlarm';
 import AlarmInput from '../components/AlarmInput.vue';
 
 export default {
@@ -48,8 +48,8 @@ export default {
         ({ selectedToDo: 0 }),
 
     setup() {
-        const toDoStore = useStoreToDo();
-        const alarmStore = useStore()
+        const toDoStore = useStoreToDo()
+        const alarmStore = useStoreAlarm()
         return { toDoStore, alarmStore }
     },
 

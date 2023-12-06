@@ -1,5 +1,5 @@
 <template>
-    <div class="flex ml-20">
+    <div class="flex ml-16">
         <div class="w-auto h-auto rounded-xl m-2 ">
             
             <slot>
