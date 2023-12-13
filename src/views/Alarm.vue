@@ -12,12 +12,10 @@
                 <div class="m-2" v-for="(alarm, index) in alarmStore.alarmSchedule" :key="index">
                     <div class="card w-48 bg-neutral text-neutral-content">
                         <div class="card-body items-center text-center">
-
                             <h2 class="card-title">Alarm #{{ index + 1 }}</h2>
                             <h2>  {{ alarm.name}} </h2>
                             <p class="text-xs"> Alarm schedule at: {{ alarmStore.formatAlarm(alarm.date) }}</p>
                             <div class="card-actions justify-center m-2">
-                                <!-- <button class="btn btn-primary">Snooze</button> -->
                                 <button class="btn btn-ghost" @click="alarmStore.deleteAlarm(alarm.id)">Delete</button>
                             </div>
                         </div>

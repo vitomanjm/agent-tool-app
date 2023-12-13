@@ -52,11 +52,6 @@ export const useStoreAlarm = defineStore('alarmStore', {
             this.alarmSong.pause()
         },
 
-        snooze()
-        {
-            this.alarmSchedule.date.setHours()
-        },
-
         Open() {
             this.isOpen = true
         },
